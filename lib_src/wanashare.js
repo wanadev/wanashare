@@ -25,7 +25,7 @@ var Wanashare = Class.$extend({
                         if (error) {
                             callback(error);
                         } else {
-                            _this.saveTokens();
+                            _this._saveTokens();
                             _this._send(message, media, callback);
                         }
                     });
@@ -38,7 +38,7 @@ var Wanashare = Class.$extend({
                 if (error) {
                     callback(error);
                 } else {
-                    _this.saveTokens();
+                    _this._saveTokens();
                     _this._send(message, media, callback);
                 }
             });
@@ -53,7 +53,7 @@ var Wanashare = Class.$extend({
         throw new Error("Not Implemented");
     },
 
-    _saveToken: function () {
+    _saveTokens: function () {
         if (!global.localStorage) {
             return;
         }

@@ -1,5 +1,8 @@
 "use strict";
 
+var Pipe = require("flozz-pipejs");
+var ajax = require("please-ajax");
+
 var Wanashare = require("./wanashare.js");
 
 var Twitter = Wanashare.$extend({
@@ -11,12 +14,42 @@ var Twitter = Wanashare.$extend({
     },
 
     _connect: function (callback) {
+        var _this = this;
+
         this.$data.tokens = {
-            requestToken: null,
-            requestTokenSecret: null
+            // TODO
         };
 
-        // TODO
+        var requestToken = null;
+        var requestTokenSecret = null;
+
+        var p = new Pipe(
+            function () {
+                console.log("requestToken: " + requestToken); // FIXME
+                console.log("requestTokenSecret: " + requestTokenSecret); // FIXME
+                callback();
+            },
+            function (error) {
+                callback(error || "connection-error");
+            }
+        );
+
+        p.add(function (pipe) {
+            ajax.get(_this._prefix + _this._name + "/get-request-token", {
+                success: function (response) {
+                    if (response.data.token && response.data.token_secret) {
+                        requestToken = response.data.token;
+                        requestTokenSecret = response.data.token_secret;
+                        pipe.done();
+                    } else {
+                        pipe.error("request-token-error");
+                    }
+                },
+                error: pipe.error
+            });
+        });
+
+        p.run();
     },
 
     _send: function (message, media, callback) {

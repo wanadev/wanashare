@@ -21,6 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.3",
+    "flozz-pipejs": "^1.0.1",
+    "please-ajax": "^2.0.0",
     "twitter-node-client": "0.0.6"
   },
   "devDependencies": {

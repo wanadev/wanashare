@@ -9,3 +9,7 @@
 
     npm run build
 
+## Run demo server
+
+    npm run server
+

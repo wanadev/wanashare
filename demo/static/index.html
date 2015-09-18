@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Wanashare Demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            body {
+                font-family: sans-serif;
+                background: #f1f1f1;
+            }
+            #demo {
+                background: #fff;
+                border: #fff solid 10px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+                position: relative;
+                width: 800px;
+                margin: 30px auto;
+            }
+            #demo img {
+                vertical-align: middle;
+                margin-bottom: 10px;
+            }
+            .credits {
+                font-size: 9pt;
+                float: right;
+                color: gray;
+            }
+            button {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="demo">
+            <img src="photo.jpg" alt="Sample Photo" />
+            <div class="credits">Photo by Tango Chan, CC-BY-3.0</div>
+            <div class="buttons">
+                <button id="share-twitter">Twitter</button>
+            </div>
+        <script src="wanashare.js"></script>
+        <script>
+            var twitter = new wanashare.Twitter("/api/");
+            document.getElementById("share-twitter").onclick = function () {
+                twitter.share("Hello World", null, function (error) {
+                    if (error) {
+                        console.log("Error: " + error);
+                    } else {
+                        console.log("OK!");
+                    }
+                });
+            }
+            // var windowObjectReference = window.open("http://www.twitter.com/", "Wanashare", "menubar=0,location=0,resizable=0,scrollbars,status=0,centerscreen,width=500,height=400");
+        </script>
+    </body>
+
+</html>

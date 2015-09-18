@@ -17,10 +17,23 @@ var Wanashare = Class.$extend({
     },
 
     share: function(message, media, callback) {
+        var _this = this;
         if (this.connected) {
-            this._send(message, media, callback);
+            this._send(message, media, function (error) {
+                if (error) {
+                    _this._connect(function (error) {
+                        if (error) {
+                            callback(error);
+                        } else {
+                            _this.saveTokens();
+                            _this._send(message, media, callback);
+                        }
+                    });
+                } else {
+                    callback();
+                }
+            });
         } else {
-            var _this = this;
             this._connect(function (error) {
                 if (error) {
                     callback(error);

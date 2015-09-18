@@ -49,6 +49,10 @@ var Twitter = Wanashare.$extend({
             });
         });
 
+        p.add(function (pipe) {
+            _this._openPopup(_this._prefix + _this._name + "/ask-authorization/" + requestToken);
+        });
+
         p.run();
     },
 

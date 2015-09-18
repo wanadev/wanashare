@@ -9,18 +9,23 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
         // Get request token
         // return tokens to client
 
+        var callbackUrl = request.protocol + "://" + request.get("host") + prefix + "twitter/authorized";
+
         var twitter = new TwitterClient({
             "consumerKey": consumerKey,
-            "consumerSecret": consumerSecret
+            "consumerSecret": consumerSecret,
+            "callBackUrl": callbackUrl
         });
         twitter.getOAuthRequestToken(function (oauth) {
             response.json(oauth);
         });
     });
 
-    app.post(prefix + "twitter/ask-authorization/", function (request, response) {
+    app.get(prefix + "twitter/ask-authorization/:token", function (request, response) {
         // [OPENED IN IFRAME]
         // Redirect to twitter authorization page with token
+
+        response.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + request.params.token);
     });
 
     app.get(prefix + "twitter/authorized", function (request, response) {

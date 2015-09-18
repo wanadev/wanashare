@@ -10,6 +10,7 @@ var Wanashare = Class.$extend({
         this._prefix = prefix || "/";
         this.$data.tokens = {};
         this._loadTokens();
+        this._popup = null;
     },
 
     isConnected: function () {
@@ -17,11 +18,14 @@ var Wanashare = Class.$extend({
     },
 
     share: function(message, media, callback) {
+        this._openPopup();
+
         var _this = this;
         if (this.connected) {
             this._send(message, media, function (error) {
                 if (error) {
                     _this._connect(function (error) {
+                        _this._popup.close();
                         if (error) {
                             callback(error);
                         } else {
@@ -30,11 +34,13 @@ var Wanashare = Class.$extend({
                         }
                     });
                 } else {
+                    _this._popup.close();
                     callback();
                 }
             });
         } else {
             this._connect(function (error) {
+                _this._popup.close();
                 if (error) {
                     callback(error);
                 } else {
@@ -51,6 +57,18 @@ var Wanashare = Class.$extend({
 
     _send: function (message, media, callback) {
         throw new Error("Not Implemented");
+    },
+
+    _openPopup: function(url, width, height) {
+        url = url || "";
+        width = width || 750;
+        height = height || 525;
+
+        var params = "menubar=0,location=0,resizable=0,scrollbars,status=0,centerscreen,";
+        params += "width=" + width;
+        params += ",height=" + height;
+
+        this._popup = global.open(url, "Wanashare-" + this._name, params);
     },
 
     _saveTokens: function () {

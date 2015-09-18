@@ -1,0 +1,31 @@
+{
+  "name": "wanashare",
+  "version": "0.0.0",
+  "description": "Share medias on Twitter and Facebook from Express app",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/.bin/browserify lib_src/wanashare.js -o lib/wanashare.js && node_modules/.bin/browserify lib_src/wanashare-photonui.js -o lib/wanashare-photonui.js"
+  },
+  "keywords": [
+    "social",
+    "twitter",
+    "facebook",
+    "media",
+    "photo",
+    "image",
+    "share"
+  ],
+  "author": "Wanadev",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "request": "^2.62.0",
+    "twitter-node-client": "0.0.6"
+  },
+  "devDependencies": {
+    "abitbol": "^1.0.3",
+    "browserify": "^11.1.0",
+    "photonui": "^1.1.0"
+  }
+}

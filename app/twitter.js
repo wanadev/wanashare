@@ -2,8 +2,10 @@
 
 var TwitterClient = require("twitter-node-client").Twitter;
 
+var helpers = require("./helpers.js");
+
 var Twitter = function (app, consumerKey, consumerSecret, prefix) {
-    prefix = prefix || "/";
+    prefix = prefix || "/wanashare/";
 
     app.get(prefix + "twitter/get-request-token", function (request, response) {
         // Get request token
@@ -30,15 +32,22 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
 
     app.get(prefix + "twitter/authorized", function (request, response) {
         // Read GET params
-        // Transforms request token to access token
         // return page with js that
         //   -> postMeassage to close iframe and return access tokens
+
+        response.send(helpers.genCallbackPage({
+            oauth_token: request.query.oauth_token,
+            oauth_verifier: request.query.oauth_verifier
+        }));
+    });
+
+    app.get(prefix + "twitter/get-access-token/:requestToken/:requestTokenSecret/:oauthVerifier", function (request, response) {
+        // Transforms request token to access token
     });
 
     app.post(prefix + "twitter/share", function (request, response) {
         // ...
     });
 };
-
 
 module.exports = Twitter;

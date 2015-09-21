@@ -22,11 +22,13 @@ var Twitter = Wanashare.$extend({
 
         var requestToken = null;
         var requestTokenSecret = null;
+        var oauthVerifier = null;
 
         var p = new Pipe(
             function () {
                 console.log("requestToken: " + requestToken); // FIXME
                 console.log("requestTokenSecret: " + requestTokenSecret); // FIXME
+                console.log("oauthVerifier: " + oauthVerifier); // FIXME
                 callback();
             },
             function (error) {
@@ -50,7 +52,18 @@ var Twitter = Wanashare.$extend({
         });
 
         p.add(function (pipe) {
-            _this._openPopup(_this._prefix + _this._name + "/ask-authorization/" + requestToken);
+            _this._openPopup(_this._prefix + _this._name + "/ask-authorization/" + requestToken, function (error, data) {
+                if (error) {
+                    pipe.error(error || "authorization-error");
+                } else {
+                    if (data.oauth_token == requestToken) {
+                        oauthVerifier = data.oauth_verifier;
+                        pipe.done(data);
+                    } else {
+                        pipe.error("authorization-token-mismatch-error");
+                    }
+                }
+            });
         });
 
         p.run();

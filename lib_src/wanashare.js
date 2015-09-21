@@ -104,11 +104,8 @@ var Wanashare = Class.$extend({
         if (!global.localStorage) {
             return;
         }
-        if (!global.localStorage.wanashare) {
-            global.localStorage.wanashare = {};
-        }
         try {
-            global.localStorage.wanashare[this._name] = JSON.stringify(this.$data.tokens);
+            global.localStorage["wanashare-" + this._name] = JSON.stringify(this.$data.tokens);
         } catch (error) {
             // pass
         }
@@ -118,9 +115,9 @@ var Wanashare = Class.$extend({
         if (!global.localStorage) {
             return;
         }
-        if (global.localStorage.wanashare && global.localStorage.wanashare[this._name]) {
+        if (global.localStorage["wanashare-" + this._name]) {
             try {
-                var tokens = JSON.parse(global.localStorage.wanashare[this._name]);
+                var tokens = JSON.parse(global.localStorage["wanashare-" + this._name]);
                 this.$data.tokens = tokens;
             } catch (error) {
                 // pass

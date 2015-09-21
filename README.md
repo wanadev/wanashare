@@ -12,4 +12,3 @@
 ## Run demo server
 
     npm run server
-

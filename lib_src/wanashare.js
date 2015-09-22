@@ -60,7 +60,7 @@ var Wanashare = Class.$extend({
     },
 
     _openPopup: function(url, callback, width, height) {
-        url = url || "";
+        url = url || this._prefix + this._name + "/blank";
         callback = callback || function () {};
         width = width || 750;
         height = height || 525;

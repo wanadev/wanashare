@@ -10,6 +10,13 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
     prefix = prefix || "/wanashare/";
 
     /*
+     * Blank page
+     */
+    app.get(prefix + "twitter/blank", function (request, response) {
+        response.send(helpers.genCallbackPage(null, "#E5F2F7", "#55ACEE"));
+    });
+
+    /*
      * Get request token
      */
     app.get(prefix + "twitter/get-request-token", function (request, response) {
@@ -39,7 +46,7 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
         response.send(helpers.genCallbackPage({
             oauth_token: request.query.oauth_token,
             oauth_verifier: request.query.oauth_verifier
-        }));
+        }, "#E5F2F7", "#55ACEE"));
     });
 
     /*

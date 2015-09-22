@@ -1,4 +1,6 @@
-# Wanashare - Share medias on Twitter and Facebook from Express app
+# Wanashare - Share medias on Twitter and Facebook
+
+Wanashare allows you to upload a photo (with a status message) on **Twitter** and ~~Facebook~~ SOON. It is intended to be used by client-side web applications. The server-side part is still required but is minimalistic (no session, no cookies needed) and can be integrated into any **Express.js** app. The access tokens are stored in the user's `localStorage` and are never saved on the server.
 
 
 ## Getting started
@@ -70,3 +72,4 @@ If you made changes in `lib_src/`, you should rebuild the `lib/wanashare.js` fil
 To run the demo server, first put your own app keys in `demo/server.js` file and then run the following command:
 
     npm run server
+

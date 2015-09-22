@@ -1,7 +1,7 @@
 {
   "name": "wanashare",
   "version": "0.0.0",
-  "description": "Share medias on Twitter and Facebook from Express app",
+  "description": "Share medias on Twitter and Facebook",
   "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,10 +15,11 @@
     "media",
     "photo",
     "image",
-    "share"
+    "share",
+    "express"
   ],
   "author": "Wanadev",
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "busboy": "^0.2.11",
     "express": "^4.13.3",

@@ -90,7 +90,25 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
         });
         busboy.on("finish", function () {
             if (message && media) {
-                response.json({});
+                twitter.postMedia({media_data: media.get().toString("base64")},
+                    function (error) {
+                        response.sendStatus(500);
+                    },
+                    function (data) {
+                        var media_id = JSON.parse(data).media_id_string;
+                        twitter.postTweet({
+                                status: message,
+                                media_ids: [media_id]
+                            },
+                            function (error) {
+                                response.sendStatus(500);
+                            },
+                            function () {
+                                response.json({});
+                            }
+                        )
+                    }
+                );
             } else {
                 response.sendStatus(400);
             }

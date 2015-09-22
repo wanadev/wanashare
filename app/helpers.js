@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = {
+var helpers = {
     genCallbackPage: function (params) {
         var html = "<!DOCTYPE html>";
         html += "<html>";
@@ -16,4 +16,6 @@ module.exports = {
         html += "</html>";
         return html;
     }
-}
+};
+
+module.exports = helpers;

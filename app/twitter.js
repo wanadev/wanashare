@@ -1,6 +1,8 @@
 "use strict";
 
 var TwitterClient = require("twitter-node-client").Twitter;
+var Busboy = require("busboy");
+var MemoryStream = require("memory-stream");
 
 var helpers = require("./helpers.js");
 
@@ -14,9 +16,9 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
         var callbackUrl = request.protocol + "://" + request.get("host") + prefix + "twitter/authorized";
 
         var twitter = new TwitterClient({
-            "consumerKey": consumerKey,
-            "consumerSecret": consumerSecret,
-            "callBackUrl": callbackUrl
+            consumerKey: consumerKey,
+            consumerSecret: consumerSecret,
+            callBackUrl: callbackUrl
         });
         twitter.getOAuthRequestToken(function (oauth) {
             response.json(oauth);
@@ -46,8 +48,8 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
     app.get(prefix + "twitter/get-access-token/:requestToken/:requestTokenSecret/:oauthVerifier", function (request, response) {
         // Transforms request token to access token
         var twitter = new TwitterClient({
-            "consumerKey": consumerKey,
-            "consumerSecret": consumerSecret
+            consumerKey: consumerKey,
+            consumerSecret: consumerSecret
         });
         twitter.getOAuthAccessToken({
             token: request.params.requestToken,
@@ -58,8 +60,42 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
         });
     });
 
-    app.post(prefix + "twitter/share", function (request, response) {
-        // ...
+    /*
+     * Post medias on twitter
+     */
+    app.post(prefix + "twitter/share/:accessToken/:accessTokenSecret", function (request, response) {
+        var twitter = new TwitterClient({
+            consumerKey: consumerKey,
+            consumerSecret: consumerSecret,
+            accessToken: request.params.accessToken,
+            accessTokenSecret: request.params.accessTokenSecret
+        });
+
+        var message;
+        var media;
+
+        var busboy = new Busboy({headers: request.headers});
+        busboy.on("field", function (fieldname, value) {
+            if (fieldname == "message") {
+                message = value;
+            }
+        });
+        busboy.on("file", function (fieldname, file, filename, encoding, mimetype) {
+            if (!mimetype.match(/^image\/.*$/)) {
+                response.sendStatus(415);
+                return;
+            }
+            media = new MemoryStream();
+            file.pipe(media);
+        });
+        busboy.on("finish", function () {
+            if (message && media) {
+                response.json({});
+            } else {
+                response.sendStatus(400);
+            }
+        });
+        request.pipe(busboy);
     });
 };
 

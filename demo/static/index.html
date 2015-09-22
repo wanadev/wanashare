@@ -36,7 +36,7 @@
 
     <body>
         <div id="demo">
-            <img src="photo.jpg" alt="Sample Photo" />
+            <img src="photo.jpg" alt="Sample Photo" id="photo" />
             <div class="credits">Photo by Tango Chan, CC-BY-3.0</div>
             <div class="buttons">
                 <button id="share-twitter">Twitter</button>
@@ -44,12 +44,21 @@
         <script src="wanashare.js"></script>
         <script>
             var twitter = new wanashare.Twitter("/api/");
+
+            var photo = document.getElementById("photo");
+            var canvas = document.createElement("canvas");
+            canvas.width = photo.width;
+            canvas.height = photo.height;
+            canvas.getContext("2d").drawImage(photo, 0, 0);
+            var media64 = canvas.toDataURL("image/jpeg", 0.9);
+
             document.getElementById("share-twitter").onclick = function () {
-                twitter.share("Hello World", null, function (error) {
+                twitter.share("Hello World", media64, function (error) {
                     if (error) {
-                        console.log("Error: " + error);
+                        alert("Error!");
+                        console.log("Error: ", error);
                     } else {
-                        console.log("OK!");
+                        alert("OK!");
                     }
                 });
             }

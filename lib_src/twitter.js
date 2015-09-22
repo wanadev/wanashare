@@ -4,6 +4,7 @@ var Pipe = require("flozz-pipejs");
 var ajax = require("please-ajax");
 
 var Wanashare = require("./wanashare.js");
+var helpers = require("./helpers.js");
 
 var Twitter = Wanashare.$extend({
 
@@ -27,7 +28,6 @@ var Twitter = Wanashare.$extend({
 
         var p = new Pipe(
             function () {
-                console.log("tokens: ", _this.$data.tokens); // FIXME
                 callback();
             },
             function (error) {
@@ -84,7 +84,33 @@ var Twitter = Wanashare.$extend({
     },
 
     _send: function (message, media, callback) {
-        // TODO
+        var _this = this;
+
+        var p = new Pipe(
+            function () {
+                callback();
+            },
+            function (error) {
+                callback(error || "upload-error");
+            }
+        );
+
+        p.add(function (pipe) {
+            helpers.ajaxUpload(
+                _this._prefix + _this._name + "/share/" + _this.$data.tokens.accessToken + "/" + _this.$data.tokens.accessTokenSecret,
+                media,
+                {message: message},
+                function (error) {
+                    if (error) {
+                        pipe.error(error);
+                    } else {
+                        pipe.done();
+                    }
+                }
+            );
+        });
+
+        p.run();
     }
 });
 

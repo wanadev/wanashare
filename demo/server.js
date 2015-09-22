@@ -7,11 +7,6 @@ var app = express();
 app.use(express.static("demo/static/"));
 app.use(express.static("lib/"));
 
-new Twitter(
-    app,
-    "2jPLtdqHs2LrXyViR7284ifXI", // FIXME
-    "Yuep9X7JystkC4QRUt6sYdzTGk0lROuFrrcVQ2MDSVT0LIMdR6", // FIXME
-    "/api/"
-);
+new Twitter(app, "Twitter app's Consumer Key", "Twitter app's Consumer Secret");
 
 var server = app.listen(3000);

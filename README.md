@@ -73,3 +73,7 @@ To run the demo server, first put your own app keys in `demo/server.js` file and
 
     npm run server
 
+## Changelog
+
+* **0.1.0**: Initial release, Twitter support
+

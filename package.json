@@ -21,6 +21,7 @@
   "author": "Wanadev",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "abitbol": "^1.0.3",
     "busboy": "^0.2.11",
     "express": "^4.13.3",
     "facebook-node-sdk": "^0.2.0",
@@ -30,7 +31,6 @@
     "twitter-node-client": "git+ssh://git@github.com:flozz/TwitterJSClient.git"
   },
   "devDependencies": {
-    "abitbol": "^1.0.3",
     "browserify": "^11.1.0"
   }
 }

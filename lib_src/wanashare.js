@@ -80,7 +80,7 @@ var Wanashare = Class.$extend({
             } catch (error) {
                 // Pass
             }
-            if (url == _this._prefix + "twitter/authorized") {
+            if (url == _this._prefix + _this._name + "/authorized") {
                 callback(undefined, _this._popup.oauth);
             } else {
                 // loop until the popup is on the callback page or timeout

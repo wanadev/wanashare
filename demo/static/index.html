@@ -40,10 +40,12 @@
             <div class="credits">Photo by Tango Chan, CC-BY-3.0</div>
             <div class="buttons">
                 <button id="share-twitter">Twitter</button>
+                <button id="share-facebook">Facebook</button>
             </div>
         <script src="wanashare.js"></script>
         <script>
             var twitter = new wanashare.Twitter();
+            var facebook = new wanashare.Facebook();
 
             var photo = document.getElementById("photo");
             var canvas = document.createElement("canvas");
@@ -61,7 +63,18 @@
                         alert("OK!");
                     }
                 });
-            }
+            };
+
+            document.getElementById("share-facebook").onclick = function () {
+                facebook.share("Hello World", media64, function (error) {
+                    if (error) {
+                        alert("Error!");
+                        console.log("Error: ", error);
+                    } else {
+                        alert("OK!");
+                    }
+                });
+            };
         </script>
     </body>
 

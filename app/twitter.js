@@ -1,5 +1,6 @@
 "use strict";
 
+require("magic-globals");
 var TwitterClient = require("twitter-node-client").Twitter;
 var Busboy = require("busboy");
 var MemoryStream = require("memory-stream");
@@ -99,6 +100,7 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
             if (message && media) {
                 twitter.postMedia({media_data: media.get().toString("base64")},
                     function (error) {
+                        console.error("["+__filename+":"+__line+"]", error);
                         response.sendStatus(500);
                     },
                     function (data) {
@@ -108,6 +110,7 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
                                 media_ids: [media_id]
                             },
                             function (error) {
+                                console.error("["+__filename+":"+__line+"]", error);
                                 response.sendStatus(500);
                             },
                             function () {

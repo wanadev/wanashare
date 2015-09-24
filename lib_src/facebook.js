@@ -11,14 +11,15 @@ var Facebook = Wanashare.$extend({
     _name: "facebook",
 
     isConnected: function () {
-        return Boolean(this.$data.tokens.accessToken);
+        return this.$data.tokens.accessToken && this.$data.tokens.userId;
     },
 
     _connect: function (callback) {
         var _this = this;
 
         this.$data.tokens = {
-            accessToken: null
+            accessToken: null,
+            userId: null
         };
 
         var code;
@@ -50,8 +51,9 @@ var Facebook = Wanashare.$extend({
         p.add(function (pipe) {
             ajax.get(_this._prefix + _this._name + "/get-access-token/" + code, {
                 success: function (response) {
-                    if (response.data.accessToken) {
+                    if (response.data.accessToken && response.data.userId) {
                         _this.$data.tokens.accessToken = response.data.accessToken;
+                        _this.$data.tokens.userId = response.data.userId;
                         pipe.done();
                     } else {
                         pipe.error("access-token-error");
@@ -65,8 +67,33 @@ var Facebook = Wanashare.$extend({
     },
 
     _send: function (message, media, callback) {
-        callback(); // FIXME
-        // TODO
+        var _this = this;
+
+        var p = new Pipe(
+            function () {
+                callback();
+            },
+            function (error) {
+                callback(error || "upload-error");
+            }
+        );
+
+        p.add(function (pipe) {
+            helpers.ajaxUpload(
+                _this._prefix + _this._name + "/share/" + _this.$data.tokens.userId + "/" + _this.$data.tokens.accessToken,
+                media,
+                {message: message},
+                function (error) {
+                    if (error) {
+                        pipe.error(error);
+                    } else {
+                        pipe.done();
+                    }
+                }
+            );
+        });
+
+        p.run();
     }
 });
 

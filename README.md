@@ -98,5 +98,6 @@ To run the demo server, first put your own app keys in `demo/server.js` file and
 
 ## Changelog
 
+* **0.2.0**: Facebook support
 * **0.1.0**: Initial release, Twitter support
 

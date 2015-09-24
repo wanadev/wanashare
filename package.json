@@ -8,6 +8,10 @@
     "build": "node_modules/.bin/browserify lib_src/index.js -o lib/wanashare.js -s wanashare",
     "server": "node demo/server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wanadev/wanashare.git"
+  },
   "keywords": [
     "social",
     "twitter",

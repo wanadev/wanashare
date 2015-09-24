@@ -1,6 +1,9 @@
 # Wanashare - Share medias on Twitter and Facebook
 
-Wanashare allows you to upload a photo (with a status message) on **Twitter** and ~~Facebook~~ SOON. It is intended to be used by client-side web applications. The server-side part is still required but is minimalistic (no session, no cookies needed) and can be integrated into any **Express.js** app. The access tokens are stored in the user's `localStorage` and are never saved on the server.
+[![NPM Version](http://img.shields.io/npm/v/wanashare.svg?style=flat)](https://www.npmjs.com/package/wanashare)
+[![License](http://img.shields.io/npm/l/wanashare.svg?style=flat)](https://github.com/wanadev/wanashare/blob/master/LICENSE)
+
+Wanashare allows you to upload a photo (with a status message) on **Twitter** and **Facebook**. It is intended to be used by client-side web applications. The server-side part is still required but is minimalistic (no session, no cookies needed) and can be integrated into any **Express.js** app. The access tokens are stored in the user's `localStorage` and are never saved on the server.
 
 
 ## Getting started

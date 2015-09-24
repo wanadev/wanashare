@@ -29,7 +29,14 @@ var server = app.listen(3000);
 
 #### Facebook
 
-Not implemented yet
+```javascript
+var express = require("express");
+var Facebook = require("wanashare").Facebook;
+
+var app = express();
+new Facebook(app, "Facebook app's ID", "Facebook app's Secret");
+var server = app.listen(3000);
+```
 
 
 ### Client Side
@@ -56,7 +63,23 @@ Not implemented yet
 
 #### Facebook
 
-Not implemented yet
+```html
+<script src="lib/wanashare.js"></script>
+<script>
+    var fb = new wanashare.Facebook();
+    fb.share(
+        "Message",   // The tweet content
+        photo,       // The image to share (Blob or data64URI string)
+        function (error) {
+            if (error) {
+                alert("An error occured!");
+            } else {
+                alert("Done :D");
+            }
+        }
+    });
+</script>
+```
 
 
 ## Build client libs

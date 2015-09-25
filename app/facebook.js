@@ -91,7 +91,7 @@ var Facebook = function (app, appId, appSecret, prefix) {
             var buffer = media.get();
             buffer.mimetype = mediaMime;
             buffer.filename = mediaName;
-            if (message && media) {
+            if (message !== undefined && media) {
                 fb.graph("/" + request.params.userId + "/photos", "POST", {
                     caption: " " + message,
                     media: buffer,

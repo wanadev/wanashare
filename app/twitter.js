@@ -97,7 +97,7 @@ var Twitter = function (app, consumerKey, consumerSecret, prefix) {
             file.pipe(media);
         });
         busboy.on("finish", function () {
-            if (message && media) {
+            if (message !== undefined && media) {
                 twitter.postMedia({media_data: media.get().toString("base64")},
                     function (error) {
                         console.error("["+__filename+":"+__line+"]", error);

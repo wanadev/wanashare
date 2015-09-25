@@ -101,6 +101,7 @@ To run the demo server, first put your own app keys in `demo/server.js` file and
 
 ## Changelog
 
+* **0.2.3**: Use https instead of ssh for repositiories addresses
 * **0.2.2**: Allow empty messages
 * **0.2.1**: Minor fixes in package.json and README.md
 * **0.2.0**: Facebook support

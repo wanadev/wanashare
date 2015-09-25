@@ -1,6 +1,6 @@
 {
   "name": "wanashare",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Share medias on Twitter and Facebook",
   "main": "app/index.js",
   "scripts": {
@@ -28,12 +28,12 @@
     "abitbol": "^1.0.3",
     "busboy": "^0.2.11",
     "express": "^4.13.3",
-    "facebook-node-sdk": "git+ssh://git@github.com:flozz/facebook-node-sdk.git",
+    "facebook-node-sdk": "git+https://github.com/flozz/facebook-node-sdk.git",
     "flozz-pipejs": "^1.0.1",
     "magic-globals": "^0.5.0",
     "memory-stream": "0.0.3",
     "please-ajax": "^2.0.0",
-    "twitter-node-client": "git+ssh://git@github.com:flozz/TwitterJSClient.git"
+    "twitter-node-client": "git+https://github.com/flozz/TwitterJSClient.git"
   },
   "devDependencies": {
     "browserify": "^11.1.0"

@@ -2,6 +2,9 @@
 
 [![NPM Version](http://img.shields.io/npm/v/wanashare.svg?style=flat)](https://www.npmjs.com/package/wanashare)
 [![License](http://img.shields.io/npm/l/wanashare.svg?style=flat)](https://github.com/wanadev/wanashare/blob/master/LICENSE)
+[![Dependencies](https://img.shields.io/david/wanadev/wanashare.svg?maxAge=2592000)]()
+[![Dev Dependencies](https://img.shields.io/david/dev/wanadev/wanashare.svg?maxAge=2592000)]()
+
 
 Wanashare allows you to upload a photo (with a status message) on **Twitter** and **Facebook**. It is intended to be used by client-side web applications. The server-side part is still required but is minimalistic (no session, no cookies needed) and can be integrated into any **Express.js** app. The access tokens are stored in the user's `localStorage` and are never saved on the server.
 
@@ -101,6 +104,7 @@ To run the demo server, first put your own app keys in `demo/server.js` file and
 
 ## Changelog
 
+* **0.2.4**: Updates dependencies
 * **0.2.3**: Use https instead of ssh for repositiories addresses
 * **0.2.2**: Allow empty messages
 * **0.2.1**: Minor fixes in package.json and README.md

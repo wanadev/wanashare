@@ -1,6 +1,6 @@
 {
   "name": "wanashare",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Share medias on Twitter and Facebook",
   "main": "app/index.js",
   "scripts": {

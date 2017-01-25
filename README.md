@@ -104,6 +104,7 @@ To run the demo server, first put your own app keys in `demo/server.js` file and
 
 ## Changelog
 
+* **0.2.5**: Updates dependencies
 * **0.2.4**: Updates dependencies
 * **0.2.3**: Use https instead of ssh for repositiories addresses
 * **0.2.2**: Allow empty messages

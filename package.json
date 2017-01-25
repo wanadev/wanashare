@@ -29,7 +29,7 @@
     "busboy": "^0.2.14",
     "express": "^4.13.3",
     "facebook-node-sdk": "git+https://github.com/flozz/facebook-node-sdk.git",
-    "flozz-pipejs": "^1.0.1",
+    "flozz-pipejs": "^1.0.2",
     "magic-globals": "^0.5.1",
     "memory-stream": "0.0.3",
     "please-ajax": "^2.0.0",

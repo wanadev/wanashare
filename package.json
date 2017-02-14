@@ -36,6 +36,6 @@
     "twitter-node-client": "git+https://github.com/flozz/TwitterJSClient.git"
   },
   "devDependencies": {
-    "browserify": "^14.0.0"
+    "browserify": "^14.1.0"
   }
 }

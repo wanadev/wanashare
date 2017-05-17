@@ -1,5 +1,7 @@
 # Wanashare - Share medias on Twitter and Facebook
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/wanashare.svg)](https://greenkeeper.io/)
+
 [![NPM Version](http://img.shields.io/npm/v/wanashare.svg?style=flat)](https://www.npmjs.com/package/wanashare)
 [![License](http://img.shields.io/npm/l/wanashare.svg?style=flat)](https://github.com/wanadev/wanashare/blob/master/LICENSE)
 [![Dependencies](https://img.shields.io/david/wanadev/wanashare.svg?maxAge=2592000)]()
